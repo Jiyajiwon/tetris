@@ -28,3 +28,6 @@
 - pull Vs. fetch
   pull은 변경사항 가져오기 + merge (local == remote)
   fetch는 변경사항 가져오기 (local != remote)
+##
+## component_1
+![component_1](https://user-images.githubusercontent.com/78032658/127738324-f1661327-230a-4c1d-97bf-e77497aa472a.jpg)
