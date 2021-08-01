@@ -53,11 +53,16 @@ function prependNewLine(){
 }
 function renderBlocks() {
   const {type,direction,top,left} = tempMovingItem; /* 하나하나 변수처럼 접근하기 위해서. destructuring assignment */
+  const movingBlocks = document.querySelectorAll(".moving");
+  movingBlocks.forEach(moving => {
+    moving.classList.remove(type,"moving")
+    console.log(moving)
+  })
   BLOCKS[type][direction].forEach(block=>{ // block이 화살표 함수의 인자. (block)=>{function}
     const x = block[0]+left;
     const y = block[1]+top;
     const target=playground.childNodes[y].childNodes[0].childNodes[x]; // target은 네모 한 칸. li
-    target.classList.add(type);
+    target.classList.add(type,"moving");
   })
 }
 function moveBlock(moveType,amount){
@@ -77,5 +82,5 @@ document.addEventListener("keydown",e => { // keydown 이벤트가 일어날 때
     default:
       break;
   }
-  console.log(e);
+  // console.log(e);
 })
