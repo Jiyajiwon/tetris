@@ -34,3 +34,6 @@ body {
   height: 25px; /* 각 칸을 25x25로 고정 */
   outline: 1px solid #ccc;
 }
+.tree {
+  background: #67c23a;
+}
