@@ -15,7 +15,7 @@ let tempMovingItem; // moving 실행 전 담아두는 용도
 
 const BLOCKS = {
   tree: [ // 블럭 모양
-    [[0,0],[0,1],[1,0],[1,1]],  // 좌표
+    [[2,1],[0,1],[1,0],[1,1]],  // 좌표
     [],
     [],
     [],
@@ -25,6 +25,7 @@ const BLOCKS = {
 const movingItem = {
   type: "tree", // block의 형태 가져옴
   direction: 0,
+  // top과 left값에 의해서 BLOCKS의 좌표가 바뀌도록
   top: 0,
   left: 0,
 };
@@ -40,7 +41,6 @@ function init() {
   renderBlocks()
 }
 
-
 function prependNewLine(){
   const li = document.createElement("li"); /* li에는 li element가 할당된다. */
   const ul = document.createElement("ul"); /* ul에는 ul element가 할당된다. */
@@ -52,10 +52,10 @@ function prependNewLine(){
   playground.prepend(li);
 }
 function renderBlocks() {
-  const {type,direction,top,left} = tempMovingItem; /* 하나하나 변수처럼 접근하기 위해서 */
+  const {type,direction,top,left} = tempMovingItem; /* 하나하나 변수처럼 접근하기 위해서. destructuring assignment */
   BLOCKS[type][direction].forEach(block=>{ // block이 화살표 함수의 인자. (block)=>{function}
-    const x = block[0];
-    const y = block[1];
+    const x = block[0]+left;
+    const y = block[1]+top;
     const target=playground.childNodes[y].childNodes[0].childNodes[x]; // target은 네모 한 칸. li
     target.classList.add(type);
   })
