@@ -27,7 +27,7 @@ const movingItem = {
   direction: 0,
   // top과 left값에 의해서 BLOCKS의 좌표가 바뀌도록
   top: 0,
-  left: 0,
+  left: 3,
 };
 
 init()
@@ -60,3 +60,22 @@ function renderBlocks() {
     target.classList.add(type);
   })
 }
+function moveBlock(moveType,amount){
+  // rendering을 할 때 tempMovingItem을 통해서 렌더링하므로 tempMoving의 값을 바꿔준다.
+  tempMovingItem[moveType] += amount;
+  renderBlocks();
+}
+
+// event handling
+document.addEventListener("keydown",e => { // keydown 이벤트가 일어날 때, e 객체를 인자로 넘겨받는다.
+  switch(e.keyCode){
+    case 39:
+      moveBlock("left",1);
+      break;
+    case 37:
+      moveBlock("left",-1)
+    default:
+      break;
+  }
+  console.log(e);
+})
